@@ -62,8 +62,19 @@ oem([], _, [], []).
 oem([H|T], odd, [H|Y], Z) :- oem(T, even, Y, Z).
 oem([H|T], even, Y, [H|Z]) :- oem(T, odd, Y, Z).
 
+/* Question 7 */
 
-
+numval(X, V) :-
+  number(X),
+  V is X.
+numval(a(X, Y), V) :-
+  numval(X, XV),
+  numval(Y, YV),
+  V is XV + YV.
+numval(m(X,Y), V) :-
+  numval(X, XV),
+  numval(Y, YV),
+  V is XV * YV.
 
 
 
