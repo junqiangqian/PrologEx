@@ -53,4 +53,28 @@ contains(ML, SL, N) :-
   append(Y,T,ML),
   length(Y,N).
 
+/* Question 7 */
+
+add_poly(X, Y, P) :- add_p(X, Y, [], P).
+
+add_p([], Y, Acc, P) :- append(Acc, Y, P).
+add_p(X, [], Acc, P) :- append(Acc, X, P).
+add_p([(C1, I1)|XS], [(C2, I2)|YS], Acc, P) :-
+  I1 == I2,
+  NewCoeff is C1 + C2,
+  append(Acc, [(NewCoeff, I1)], UpdAcc),
+  add_p(XS, YS, UpdAcc, P);
+  I1 < I2,
+  append(Acc, [(C2, I2)], UpdAcc),
+  add_p([(C1, I1)|XS], YS, UpdAcc, P);
+  I1 > I2,
+  append(Acc, [(C1, I1)], UpdAcc),
+  add_p(XS, [(C2, I2)|YS], UpdAcc, P).
+
+
+
+
+
+
+
 
